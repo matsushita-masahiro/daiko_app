@@ -1,0 +1,61 @@
+<% content_for :title, "お問い合わせへの回答 - #{ENV['COMPANY_NAME']}" %>
+
+<div class="answer-form-container">
+  <div class="page-header">
+    <h1>お問い合わせへの回答</h1>
+    <%= link_to "お問い合わせ詳細に戻る", inquiry_path(@inquiry), class: "btn btn-outline" %>
+  </div>
+
+  <div class="inquiry-summary">
+    <h2>お問い合わせ内容</h2>
+    <div class="summary-box">
+      <div class="summary-meta">
+        <span><strong><%= @inquiry.name %></strong>様</span>
+        <span><%= @inquiry.inquiry_type_japanese %></span>
+        <span><%= @inquiry.created_at.strftime("%Y年%m月%d日 %H:%M") %></span>
+      </div>
+      <div class="summary-content">
+        <%= simple_format(truncate(@inquiry.content, length: 200)) %>
+      </div>
+    </div>
+  </div>
+
+  <%= form_with model: [@inquiry, @answer], local: true, class: "answer-form" do |f| %>
+    <% if @answer.errors.any? %>
+      <div class="error-messages">
+        <h4><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h4>
+        <ul>
+          <% @answer.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-table">
+      <div class="form-row">
+        <div class="form-label required">
+          <%= f.label :admin_name, "回答者名" %>
+          <span class="required-badge">必須</span>
+        </div>
+        <div class="form-input">
+          <%= f.text_field :admin_name, required: true, placeholder: "例: 三宮運転代行ジャンボ 田中" %>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-label required">
+          <%= f.label :content, "回答内容" %>
+          <span class="required-badge">必須</span>
+        </div>
+        <div class="form-input">
+          <%= f.text_area :content, rows: 10, required: true, placeholder: "お客様への回答内容をご記入ください。" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-submit">
+      <%= f.submit "回答を送信", class: "submit-btn" %>
+    </div>
+  <% end %>
+</div>

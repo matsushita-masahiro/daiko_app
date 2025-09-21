@@ -1,0 +1,68 @@
+<div class="dashboard">
+  <h2>管理者ダッシュボード</h2>
+
+  <div class="stats-grid">
+    <!-- お問い合わせ統計カード -->
+    <div class="stat-card-large">
+      <h3>📧 お問い合わせ統計</h3>
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-number"><%= @total_inquiries %></div>
+          <div class="stat-label">総件数</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number unanswered"><%= @unanswered_inquiries %></div>
+          <div class="stat-label">未回答</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number answered"><%= @answered_inquiries %></div>
+          <div class="stat-label">回答済み</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- アクセス統計カード -->
+    <div class="stat-card-large">
+      <h3>📊 アクセス統計</h3>
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-number"><%= @total_page_views %></div>
+          <div class="stat-label">総PV</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number"><%= @unique_visitors %></div>
+          <div class="stat-label">総訪問者</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number"><%= @today_page_views %></div>
+          <div class="stat-label">今日のPV</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number"><%= @today_unique_visitors %></div>
+          <div class="stat-label">今日の訪問者</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number"><%= @this_week_page_views %></div>
+          <div class="stat-label">今週のPV</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number"><%= @this_month_page_views %></div>
+          <div class="stat-label">今月のPV</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <h3>メニュー</h3>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <%= link_to admin_inquiries_path, class: "menu-link" do %>
+          <div class="menu-icon">📧</div>
+          <h4>お問い合わせ管理</h4>
+          <p>お問い合わせの確認と回答</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

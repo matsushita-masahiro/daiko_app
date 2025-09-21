@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: #2c3e50; color: white; padding: 20px; text-align: center; }
+    .content { padding: 20px; background: #f9f9f9; }
+    .footer { padding: 20px; text-align: center; font-size: 12px; color: #666; }
+    .info-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .info-table th, .info-table td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+    .info-table th { background: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><%= @company_name %></h1>
+      <p>お問い合わせ受付のご連絡</p>
+    </div>
+    
+    <div class="content">
+      <p><%= @inquiry.name %> 様</p>
+      
+      <p>この度は、<%= @company_name %>にお問い合わせいただき、誠にありがとうございます。<br>
+      以下の内容でお問い合わせを受け付けいたしました。</p>
+      
+      <table class="info-table">
+        <tr>
+          <th>お名前</th>
+          <td><%= @inquiry.name %></td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <td><%= @inquiry.furigana %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @inquiry.email %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @inquiry.phone %></td>
+        </tr>
+        <tr>
+          <th>お問い合わせ区分</th>
+          <td><%= @inquiry.inquiry_type_japanese %></td>
+        </tr>
+        <% if @inquiry.address.present? %>
+        <tr>
+          <th>ご住所</th>
+          <td><%= simple_format(@inquiry.address) %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <th>お問い合わせ内容</th>
+          <td><%= simple_format(@inquiry.content) %></td>
+        </tr>
+        <tr>
+          <th>受付日時</th>
+          <td><%= @inquiry.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+        </tr>
+      </table>
+      
+      <p>内容を確認の上、担当者より回答させていただきます。<br>
+      今しばらくお待ちください。</p>
+      
+      <p>※このメールは自動送信されています。このメールに返信されても回答できませんのでご了承ください。</p>
+    </div>
+    
+    <div class="footer">
+      <p><%= @company_name %><br>
+      電話: <%= @company_phone %><br>
+      メール: <%= ENV['ADMIN_EMAIL'] %></p>
+    </div>
+  </div>
+</body>
+</html>

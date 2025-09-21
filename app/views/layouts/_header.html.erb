@@ -1,0 +1,71 @@
+<header class="header">
+  <div class="header-top">
+    <div class="header-top-content">
+      <div class="logo-section">
+        <% if controller_name == 'home' && action_name == 'top' %>
+          <div class="logo"><%= ENV['COMPANY_NAME'] %></div>
+        <% else %>
+          <%= link_to root_path, class: "logo-link" do %>
+            <div class="logo"><%= ENV['COMPANY_NAME'] %></div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="phone-section">
+        <div class="phone-info">
+          <span class="phone-number">📞 <%= ENV['COMPANY_PHONE'] %></span>
+          <div class="phone-hours"><%= ENV['BUSINESS_HOURS_START'] %>〜翌<%= ENV['BUSINESS_HOURS_END'] %> 年中無休</div>
+        </div>
+        <div class="toggle-area">
+          <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar">
+    <div class="navbar-content">
+      <% if controller_name == 'home' && action_name == 'top' %>
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item">
+            <a href="#home" class="nav-link active">ホーム</a>
+          </li>
+          <li class="nav-item">
+            <a href="#usage" class="nav-link">ご利用方法</a>
+          </li>
+          <li class="nav-item">
+            <a href="#pricing" class="nav-link">ご利用料金</a>
+          </li>
+          <li class="nav-item">
+            <a href="#faq" class="nav-link">よくあるご質問</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">ご依頼・お問い合わせ</a>
+          </li>
+          <li class="nav-item">
+            <%= link_to "お問い合わせフォーム", new_inquiry_path, class: "nav-link" %>
+          </li>
+        </ul>
+      <% else %>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <%= link_to "ホーム", root_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <a href="<%= root_path %>#usage" class="nav-link">ご利用方法</a>
+          </li>
+          <li class="nav-item">
+            <a href="<%= root_path %>#pricing" class="nav-link">ご利用料金</a>
+          </li>
+          <li class="nav-item">
+            <a href="<%= root_path %>#faq" class="nav-link">よくあるご質問</a>
+          </li>
+          <li class="nav-item">
+            <a href="<%= root_path %>#contact" class="nav-link">ご依頼・お問い合わせ</a>
+          </li>
+          <li class="nav-item">
+            <%= link_to "お問い合わせフォーム", new_inquiry_path, class: "nav-link #{'active' if controller_name == 'inquiries'}" %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </nav>
+</header>

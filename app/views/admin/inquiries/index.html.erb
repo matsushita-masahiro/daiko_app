@@ -1,0 +1,70 @@
+<div class="inquiries-admin">
+  <div class="page-header">
+    <h2>お問い合わせ一覧</h2>
+    <%= link_to "ダッシュボードに戻る", admin_root_path, class: "btn btn-outline" %>
+  </div>
+
+  <% if @inquiries.any? %>
+    <div class="pagination-info">
+      <p>全<%= @inquiries.total_count %>件中 <%= @inquiries.current_page %>ページ目を表示（1ページ<%= @inquiries.limit_value %>件）</p>
+    </div>
+
+    <div class="inquiries-table-container">
+      <table class="inquiries-table">
+        <thead>
+          <tr>
+            <th>日時</th>
+            <th>お名前</th>
+            <th>メールアドレス</th>
+            <th>お問い合わせ区分</th>
+            <th>回答状況</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @inquiries.each do |inquiry| %>
+            <tr class="<%= inquiry.answers.any? ? 'answered' : 'unanswered' %>">
+              <td><%= inquiry.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+              <td><%= inquiry.name %></td>
+              <td><%= inquiry.email %></td>
+              <td><%= inquiry_type_label(inquiry.inquiry_type) %></td>
+              <td>
+                <% if inquiry.answers.any? %>
+                  <span class="status-badge answered">回答済み (<%= inquiry.answers.count %>件)</span>
+                <% else %>
+                  <span class="status-badge unanswered">未回答</span>
+                <% end %>
+              </td>
+              <td class="actions">
+                <%= link_to "詳細", admin_inquiry_path(inquiry), class: "btn btn-sm btn-outline" %>
+                <%= link_to "回答", new_admin_inquiry_answer_path(inquiry), class: "btn btn-sm btn-primary" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-container">
+      <% if @inquiries.respond_to?(:current_page) %>
+        <div class="pagination">
+          <% if @inquiries.prev_page %>
+            <%= link_to "前のページ", admin_inquiries_path(page: @inquiries.prev_page), class: "btn btn-outline" %>
+          <% end %>
+          
+          <span class="current-page">
+            <%= @inquiries.current_page %> / <%= @inquiries.total_pages %>ページ
+          </span>
+          
+          <% if @inquiries.next_page %>
+            <%= link_to "次のページ", admin_inquiries_path(page: @inquiries.next_page), class: "btn btn-outline" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="empty-state">
+      <p>お問い合わせはまだありません。</p>
+    </div>
+  <% end %>
+</div>

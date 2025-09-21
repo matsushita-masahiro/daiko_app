@@ -1,0 +1,108 @@
+<% content_for :title, "お問い合わせフォーム - 神戸・三宮の運転代行ヒロクル" %>
+<% content_for :description, "神戸・三宮エリアの運転代行サービスへのお問い合わせフォーム。安い料金で安全なタクシー代行サービスのご依頼やご質問はこちらから。24時間対応可能です。" %>
+<% content_for :keywords, "お問い合わせ,ご依頼,予約,神戸運転代行,三宮代行" %>
+<% content_for :og_title, "お問い合わせフォーム - 神戸・三宮の運転代行ヒロクル" %>
+
+<div class="inquiry-form-container">
+  <div class="form-header">
+    <h2>お問い合わせフォーム</h2>
+    <p>下記フォームに必要事項をご記入の上、送信ボタンを押してお問い合わせください。</p>
+  </div>
+
+  <%= form_with model: @inquiry, url: confirm_inquiries_path, local: true, class: "inquiry-form", data: { turbo: false } do |f| %>
+    <% if @inquiry.errors.any? %>
+      <div class="error-messages">
+        <h4><%= pluralize(@inquiry.errors.count, "error") %> prohibited this inquiry from being saved:</h4>
+        <ul>
+          <% @inquiry.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <table class="form-table">
+      <tr class="form-row">
+        <th class="form-label required">
+          <%= f.label :name, "お名前" %>
+          <span class="required-badge">必須</span>
+        </th>
+        <td class="form-input">
+          <%= f.text_field :name, required: true %>
+        </td>
+      </tr>
+
+      <tr class="form-row">
+        <th class="form-label required">
+          <%= f.label :furigana, "フリガナ" %>
+          <span class="required-badge">必須</span>
+        </th>
+        <td class="form-input">
+          <%= f.text_field :furigana, required: true %>
+        </td>
+      </tr>      
+
+      <tr class="form-row">
+        <th class="form-label required">
+          <%= f.label :email, "メールアドレス" %>
+          <span class="required-badge">必須</span>
+        </th>
+        <td class="form-input">
+          <%= f.email_field :email, required: true %>
+        </td>
+      </tr>
+
+
+      <tr class="form-row">
+        <th class="form-label required">
+          <%= f.label :inquiry_type, "お問い合わせ区分" %>
+          <span class="required-badge">必須</span>
+        </th>
+        <td class="form-input radio-group">
+          <%= f.radio_button :inquiry_type, "dependency", id: "inquiry_type_dependency" %>
+          <%= f.label :inquiry_type_dependency, "ご依頼", for: "inquiry_type_dependency" %>
+          
+          <%= f.radio_button :inquiry_type, "company_info", id: "inquiry_type_company" %>
+          <%= f.label :inquiry_type_company, "弊社について", for: "inquiry_type_company" %>
+          
+          <%= f.radio_button :inquiry_type, "other", id: "inquiry_type_other" %>
+          <%= f.label :inquiry_type_other, "その他ご質問", for: "inquiry_type_other" %>
+        </td>
+      </tr>
+
+      <tr class="form-row">
+        <th class="form-label required">
+          <%= f.label :phone, "電話番号" %>
+          <span class="required-badge">必須</span>
+        </th>
+        <td class="form-input">
+          <%= f.telephone_field :phone, required: true %>
+        </td>
+      </tr>
+
+      <tr class="form-row">
+        <th class="form-label">
+          <%= f.label :address, "ご住所" %>
+        </th>
+        <td class="form-input">
+          <%= f.text_area :address, rows: 3 %>
+        </td>
+      </tr>
+
+      <tr class="form-row">
+        <th class="form-label required">
+          <%= f.label :content, "お問い合わせ内容" %>
+          <span class="required-badge">必須</span>
+        </th>
+        <td class="form-input">
+          <%= f.text_area :content, rows: 8, required: true %>
+          <p class="form-note">※ご依頼の方はお迎え場所、時間などをご記入ください。</p>
+        </td>
+      </tr>
+    </table>
+
+    <div class="form-submit">
+      <%= f.submit "確認する", class: "submit-btn" %>
+    </div>
+  <% end %>
+</div>

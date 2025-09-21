@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>管理者画面 - <%= ENV['COMPANY_NAME'] %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="admin-layout">
+    <header class="admin-header">
+      <div class="admin-header-content">
+        <h1><%= ENV['COMPANY_NAME'] %> - 管理者画面</h1>
+        <nav class="admin-nav">
+          <%= link_to "ダッシュボード", admin_root_path, class: "admin-nav-link" %>
+          <%= link_to "お問い合わせ管理", admin_inquiries_path, class: "admin-nav-link" %>
+        </nav>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      <% if notice %>
+        <div class="alert alert-success"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger"><%= alert %></div>
+      <% end %>
+
+      <%= yield %>
+    </main>
+
+    <footer class="admin-footer">
+      <div class="admin-footer-content">
+        <p>&copy; 2025 <%= ENV['COMPANY_NAME'] %> 管理者画面</p>
+      </div>
+    </footer>
+  </body>
+</html>

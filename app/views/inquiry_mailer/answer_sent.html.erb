@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: #27ae60; color: white; padding: 20px; text-align: center; }
+    .content { padding: 20px; background: #f9f9f9; }
+    .footer { padding: 20px; text-align: center; font-size: 12px; color: #666; }
+    .inquiry-box { background: #e8f5e8; padding: 15px; margin: 20px 0; border-radius: 5px; border-left: 4px solid #27ae60; }
+    .answer-box { background: #fff; padding: 20px; margin: 20px 0; border-radius: 5px; border: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><%= @company_name %></h1>
+      <p>お問い合わせへの回答</p>
+    </div>
+    
+    <div class="content">
+      <p><%= @inquiry.name %> 様</p>
+      
+      <p>この度は、<%= @company_name %>にお問い合わせいただき、誠にありがとうございました。<br>
+      お問い合わせいただいた件について、以下の通り回答させていただきます。</p>
+      
+      <div class="inquiry-box">
+        <h3>📝 お問い合わせ内容</h3>
+        <p><strong>受付日時:</strong> <%= @inquiry.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+        <p><strong>お問い合わせ区分:</strong> <%= @inquiry.inquiry_type_japanese %></p>
+        <p><%= simple_format(@inquiry.content) %></p>
+      </div>
+      
+      <div class="answer-box">
+        <h3>💬 回答</h3>
+        <p><strong>回答者:</strong> <%= @answer.admin_name %></p>
+        <p><strong>回答日時:</strong> <%= @answer.answered_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+        <hr>
+        <p><%= simple_format(@answer.content) %></p>
+      </div>
+      
+      <p>ご不明な点がございましたら、お気軽にお問い合わせください。<br>
+      今後とも<%= @company_name %>をよろしくお願いいたします。</p>
+    </div>
+    
+    <div class="footer">
+      <p><%= @company_name %><br>
+      電話: <%= @company_phone %><br>
+      メール: <%= ENV['ADMIN_EMAIL'] %></p>
+    </div>
+  </div>
+</body>
+</html>

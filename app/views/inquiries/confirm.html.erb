@@ -1,0 +1,76 @@
+<% content_for :title, "お問い合わせ内容確認 - 神戸・三宮の運転代行ヒロクル" %>
+<% content_for :description, "神戸・三宮エリアの運転代行サービスへのお問い合わせ内容の確認ページです。" %>
+<% content_for :robots, "noindex, nofollow" %>
+
+<div class="inquiry-form-container">
+  <div class="form-header">
+    <h2>お問い合わせ内容確認</h2>
+    <p>以下の内容でお問い合わせを送信します。内容をご確認ください。</p>
+  </div>
+
+  <% if @inquiry.errors.any? %>
+    <div class="error-messages">
+      <h4><%= pluralize(@inquiry.errors.count, "error") %> prohibited this inquiry from being saved:</h4>
+      <ul>
+        <% @inquiry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="inquiry-form">
+    <table class="form-table">
+      <tr class="form-row">
+        <th class="form-label">お名前</th>
+        <td class="form-input"><%= @inquiry.name %></td>
+      </tr>
+
+      <tr class="form-row">
+        <th class="form-label">フリガナ</th>
+        <td class="form-input"><%= @inquiry.furigana %></td>
+      </tr>
+
+      <tr class="form-row">
+        <th class="form-label">メールアドレス</th>
+        <td class="form-input"><%= @inquiry.email %></td>
+      </tr>
+
+      <tr class="form-row">
+        <th class="form-label">お問い合わせ区分</th>
+        <td class="form-input"><%= inquiry_type_label(@inquiry.inquiry_type) %></td>
+      </tr>
+
+      <tr class="form-row">
+        <th class="form-label">電話番号</th>
+        <td class="form-input"><%= @inquiry.phone %></td>
+      </tr>
+
+      <tr class="form-row">
+        <th class="form-label">ご住所</th>
+        <td class="form-input">
+          <% if @inquiry.address.present? %>
+            <%= simple_format(@inquiry.address) %>
+          <% else %>
+            <span class="text-muted">未入力</span>
+          <% end %>
+        </td>
+      </tr>
+
+      <tr class="form-row">
+        <th class="form-label">お問い合わせ内容</th>
+        <td class="form-input"><%= simple_format(@inquiry.content) %></td>
+      </tr>
+    </table>
+
+    <div class="form-submit">
+      <div class="button-group">
+        <%= link_to "戻る", back_to_form_inquiries_path, class: "btn btn-outline" %>
+        <%= form_with model: @inquiry, url: inquiries_path, local: true, class: "inline-form", data: { turbo: false } do |f| %>
+          <%= f.submit "送信する", class: "submit-btn", 
+              confirm: "この内容でお問い合わせを送信してもよろしいですか？" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

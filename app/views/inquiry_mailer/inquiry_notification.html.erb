@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: #e74c3c; color: white; padding: 20px; text-align: center; }
+    .content { padding: 20px; background: #f9f9f9; }
+    .info-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .info-table th, .info-table td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+    .info-table th { background: #f0f0f0; }
+    .urgent { background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; margin: 20px 0; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>【管理者通知】新しいお問い合わせ</h1>
+      <p><%= @company_name %></p>
+    </div>
+    
+    <div class="content">
+      <div class="urgent">
+        <strong>⚠️ 新しいお問い合わせが届きました</strong><br>
+        速やかに対応をお願いします。
+      </div>
+      
+      <table class="info-table">
+        <tr>
+          <th>受付日時</th>
+          <td><%= @inquiry.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+        </tr>
+        <tr>
+          <th>お名前</th>
+          <td><%= @inquiry.name %></td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <td><%= @inquiry.furigana %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @inquiry.email %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @inquiry.phone %></td>
+        </tr>
+        <tr>
+          <th>お問い合わせ区分</th>
+          <td><%= @inquiry.inquiry_type_japanese %></td>
+        </tr>
+        <% if @inquiry.address.present? %>
+        <tr>
+          <th>ご住所</th>
+          <td><%= simple_format(@inquiry.address) %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <th>お問い合わせ内容</th>
+          <td><%= simple_format(@inquiry.content) %></td>
+        </tr>
+      </table>
+      
+      <p><strong>対応が必要です：</strong><br>
+      管理画面にログインして回答を作成してください。</p>
+    </div>
+  </div>
+</body>
+</html>

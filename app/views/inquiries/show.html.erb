@@ -1,0 +1,75 @@
+<% content_for :title, "お問い合わせ詳細 - #{ENV['COMPANY_NAME']}" %>
+
+<div class="inquiry-detail">
+  <div class="page-header">
+    <h1>お問い合わせ詳細</h1>
+    <div class="header-actions">
+      <%= link_to "一覧に戻る", inquiries_path, class: "btn btn-outline" %>
+      <% unless @inquiry.answers.any? %>
+        <%= link_to "回答する", new_inquiry_answer_path(@inquiry), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="inquiry-info">
+    <div class="info-section">
+      <h2>お問い合わせ情報</h2>
+      <div class="info-table">
+        <div class="info-row">
+          <div class="info-label">お名前</div>
+          <div class="info-value"><%= @inquiry.name %></div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">フリガナ</div>
+          <div class="info-value"><%= @inquiry.furigana %></div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">メールアドレス</div>
+          <div class="info-value"><%= @inquiry.email %></div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">電話番号</div>
+          <div class="info-value"><%= @inquiry.phone %></div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">お問い合わせ区分</div>
+          <div class="info-value"><%= @inquiry.inquiry_type_japanese %></div>
+        </div>
+        <% if @inquiry.address.present? %>
+          <div class="info-row">
+            <div class="info-label">ご住所</div>
+            <div class="info-value"><%= simple_format(@inquiry.address) %></div>
+          </div>
+        <% end %>
+        <div class="info-row">
+          <div class="info-label">受付日時</div>
+          <div class="info-value"><%= @inquiry.created_at.strftime("%Y年%m月%d日 %H:%M") %></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2>お問い合わせ内容</h2>
+      <div class="content-box">
+        <%= simple_format(@inquiry.content) %>
+      </div>
+    </div>
+
+    <% if @inquiry.answers.any? %>
+      <div class="answers-section">
+        <h2>回答</h2>
+        <% @inquiry.answers.order(:created_at).each do |answer| %>
+          <div class="answer-box">
+            <div class="answer-header">
+              <span class="answer-admin">回答者: <%= answer.admin_name %></span>
+              <span class="answer-date"><%= answer.answered_at.strftime("%Y年%m月%d日 %H:%M") %></span>
+            </div>
+            <div class="answer-content">
+              <%= simple_format(answer.content) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

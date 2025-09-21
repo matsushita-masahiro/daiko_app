@@ -1,0 +1,41 @@
+<% content_for :title, "お問い合わせ一覧 - #{ENV['COMPANY_NAME']}" %>
+
+<div class="inquiries-index">
+  <div class="page-header">
+    <h1>お問い合わせ一覧</h1>
+    <%= link_to "新しいお問い合わせ", new_inquiry_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="inquiries-list">
+    <% if @inquiries.any? %>
+      <% @inquiries.each do |inquiry| %>
+        <div class="inquiry-card">
+          <div class="inquiry-header">
+            <h3><%= link_to "#{inquiry.name}様からのお問い合わせ", inquiry_path(inquiry) %></h3>
+            <div class="inquiry-meta">
+              <span class="inquiry-type"><%= inquiry.inquiry_type_japanese %></span>
+              <span class="inquiry-date"><%= inquiry.created_at.strftime("%Y年%m月%d日 %H:%M") %></span>
+              <span class="answer-status <%= inquiry.answers.any? ? 'answered' : 'unanswered' %>">
+                <%= inquiry.answers.any? ? '回答済み' : '未回答' %>
+              </span>
+            </div>
+          </div>
+          <div class="inquiry-content">
+            <p><%= truncate(inquiry.content, length: 100) %></p>
+          </div>
+          <div class="inquiry-actions">
+            <%= link_to "詳細を見る", inquiry_path(inquiry), class: "btn btn-outline" %>
+            <% unless inquiry.answers.any? %>
+              <%= link_to "回答する", new_inquiry_answer_path(inquiry), class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="empty-state">
+        <p>お問い合わせはまだありません。</p>
+        <%= link_to "新しいお問い合わせを作成", new_inquiry_path, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

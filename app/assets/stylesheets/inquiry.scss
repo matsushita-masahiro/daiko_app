@@ -1,0 +1,506 @@
+// お問い合わせ関連のスタイル
+
+// お問い合わせフォームスタイル
+.inquiry-form-container,
+.answer-form-container {
+  max-width: 1000px;
+  margin: 200px auto;
+  padding: 2rem 20px;
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #666;
+      font-size: 1rem;
+    }
+  }
+
+  .inquiry-form,
+  .answer-form {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .form-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    tbody {
+      font-size: 12px;
+    }
+
+    .form-row {
+      border-bottom: 1px solid #e0e0e0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      th.form-label {
+        background: #87ceeb;
+        color: white;
+        padding: 1.5rem;
+        width: 200px;
+        text-align: left;
+        vertical-align: top;
+        font-weight: bold;
+        position: relative;
+
+        &.required {
+          .required-badge {
+            background: #e74c3c;
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            margin-left: 0.5rem;
+          }
+        }
+      }
+
+      td.form-input {
+        padding: 1.5rem;
+        background: #f8f9fa;
+        vertical-align: top;
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+          width: 100%;
+          padding: 0.75rem;
+          border: 2px solid #ddd;
+          border-radius: 5px;
+          font-size: 1rem;
+          transition: border-color 0.3s;
+
+          &:focus {
+            outline: none;
+            border-color: #87ceeb;
+          }
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 100px;
+        }
+
+        .radio-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          input[type="radio"] {
+            margin-right: 0.5rem;
+          }
+
+          label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+          }
+        }
+
+        .form-note {
+          font-size: 0.9rem;
+          color: #666;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+
+    // レスポンシブ対応
+    @media (max-width: 768px) {
+      .form-row {
+
+        th.form-label,
+        td.form-input {
+          display: block;
+          width: 100%;
+        }
+
+        th.form-label {
+          border-bottom: none;
+          padding-bottom: 0.5rem;
+        }
+
+        td.form-input {
+          padding-top: 0.5rem;
+        }
+      }
+    }
+  }
+
+  .form-submit {
+    text-align: center;
+    padding: 2rem;
+    background: #f8f9fa;
+
+    .submit-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1rem 3rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      }
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .inline-form {
+        display: inline;
+      }
+    }
+  }
+
+  // 確認画面用のスタイル
+  .text-muted {
+    color: #666;
+    font-style: italic;
+  }
+
+  .error-messages {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    border: 1px solid #f5c6cb;
+
+    h4 {
+      margin-bottom: 0.5rem;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+  }
+}
+
+// お問い合わせ一覧・詳細スタイル
+.inquiries-index,
+.inquiry-detail {
+  max-width: 1200px;
+  margin: 250px auto;
+  padding: 2rem 20px;
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e0e0e0;
+
+    h1 {
+      font-size: 2rem;
+      color: #2c3e50;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  .inquiry-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    .inquiry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+
+      h3 {
+        margin: 0;
+
+        a {
+          color: #2c3e50;
+          text-decoration: none;
+
+          &:hover {
+            color: #667eea;
+          }
+        }
+      }
+
+      .inquiry-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.25rem;
+
+        .inquiry-type {
+          background: #87ceeb;
+          color: white;
+          padding: 0.25rem 0.5rem;
+          border-radius: 15px;
+          font-size: 0.8rem;
+        }
+
+        .inquiry-date {
+          font-size: 0.9rem;
+          color: #666;
+        }
+
+        .answer-status {
+          padding: 0.25rem 0.5rem;
+          border-radius: 15px;
+          font-size: 0.8rem;
+          font-weight: bold;
+
+          &.answered {
+            background: #d4edda;
+            color: #155724;
+          }
+
+          &.unanswered {
+            background: #f8d7da;
+            color: #721c24;
+          }
+        }
+      }
+    }
+
+    .inquiry-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// お問い合わせ詳細スタイル
+.inquiry-info {
+
+  .info-section,
+  .content-section,
+  .answers-section {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    padding: 2rem;
+
+    h2 {
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #87ceeb;
+    }
+  }
+
+  .info-table {
+    .info-row {
+      display: flex;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 1rem 0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .info-label {
+        min-width: 150px;
+        font-weight: bold;
+        color: #2c3e50;
+      }
+
+      .info-value {
+        flex: 1;
+        color: #666;
+      }
+    }
+  }
+
+  .content-box {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #87ceeb;
+  }
+
+  .answer-box {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #27ae60;
+
+    .answer-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+
+      .answer-admin {
+        font-weight: bold;
+        color: #27ae60;
+      }
+
+      .answer-date {
+        color: #666;
+      }
+    }
+
+    .answer-content {
+      color: #2c3e50;
+    }
+  }
+}
+
+// 回答フォーム用スタイル
+.inquiry-summary {
+  margin-bottom: 2rem;
+
+  h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .summary-box {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+
+    .summary-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+
+      span {
+        padding: 0.25rem 0.5rem;
+        background: #f8f9fa;
+        border-radius: 15px;
+      }
+    }
+
+    .summary-content {
+      color: #666;
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+  }
+}
+
+// ボタンスタイル
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  &:hover:before {
+    left: 100%;
+  }
+
+  &.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    }
+  }
+
+  &.btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+  }
+
+  &.btn-outline {
+    background: transparent;
+    color: #667eea;
+    border: 2px solid #667eea;
+
+    &:hover {
+      background: #667eea;
+      color: white;
+      transform: translateY(-2px);
+    }
+  }
+
+  &.btn-large {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.1rem;
+  }
+}

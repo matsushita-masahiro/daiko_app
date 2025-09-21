@@ -1,0 +1,29 @@
+ja:
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "%{entry_name}が見つかりませんでした"
+          one: "1件の%{entry_name}が見つかりました"
+          other: "%{count}件の%{entry_name}が見つかりました"
+      more_pages:
+        display_entries: "全%{total}件中 %{first} - %{last}件の%{entry_name}を表示中"
+  activerecord:
+    models:
+      inquiry: "お問い合わせ"
+    attributes:
+      inquiry:
+        name: "お名前"
+        email: "メールアドレス"
+        phone: "電話番号"
+        address: "住所"
+        content: "お問い合わせ内容"
+        inquiry_type: "お問い合わせ区分"
+        created_at: "作成日時"

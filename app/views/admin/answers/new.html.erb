@@ -1,0 +1,64 @@
+<div class="answer-form-admin">
+  <div class="page-header">
+    <h2>お問い合わせ回答</h2>
+    <%= link_to "一覧に戻る", admin_inquiries_path, class: "btn btn-outline" %>
+  </div>
+
+  <div class="inquiry-summary">
+    <h3>お問い合わせ内容</h3>
+    <div class="summary-box">
+      <div class="summary-meta">
+        <span><strong>お名前:</strong> <%= @inquiry.name %></span>
+        <span><strong>メールアドレス:</strong> <%= @inquiry.email %></span>
+        <span><strong>受付日時:</strong> <%= @inquiry.created_at.strftime('%Y年%m月%d日 %H:%M') %></span>
+        <span><strong>区分:</strong> <%= inquiry_type_label(@inquiry.inquiry_type) %></span>
+      </div>
+      <div class="summary-content">
+        <%= simple_format(@inquiry.content) %>
+      </div>
+    </div>
+  </div>
+
+  <% if @inquiry.answers.any? %>
+    <div class="previous-answers">
+      <h3>これまでの回答履歴</h3>
+      <% @inquiry.answers.order(:created_at).each do |answer| %>
+        <div class="answer-box">
+          <div class="answer-header">
+            <span class="answer-date"><%= answer.created_at.strftime('%Y年%m月%d日 %H:%M') %></span>
+          </div>
+          <div class="answer-content">
+            <%= simple_format(answer.content) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= form_with model: [@inquiry, @answer], url: admin_inquiry_answers_path(@inquiry), local: true, class: "answer-form", data: { turbo: false } do |f| %>
+    <% if @answer.errors.any? %>
+      <div class="error-messages">
+        <h4><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h4>
+        <ul>
+          <% @answer.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-section">
+      <h3>回答内容</h3>
+      <div class="form-group">
+        <%= f.label :content, "回答", class: "form-label" %>
+        <%= f.text_area :content, rows: 10, required: true, class: "form-control", 
+            placeholder: "お客様への回答内容をご記入ください。" %>
+      </div>
+    </div>
+
+    <div class="form-submit">
+      <%= f.submit "回答を送信", class: "btn btn-primary btn-large", 
+          confirm: "この内容で回答を送信してもよろしいですか？お客様にメールが送信されます。" %>
+    </div>
+  <% end %>
+</div>

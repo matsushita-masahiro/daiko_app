@@ -1,0 +1,75 @@
+<div class="inquiry-detail-admin">
+  <div class="page-header">
+    <h2>お問い合わせ詳細</h2>
+    <div class="header-actions">
+      <%= link_to "一覧に戻る", admin_inquiries_path, class: "btn btn-outline" %>
+      <%= link_to "回答する", new_admin_inquiry_answer_path(@inquiry), class: "btn btn-primary" %>
+    </div>
+  </div>
+
+  <div class="inquiry-info">
+    <div class="info-section">
+      <h3>お問い合わせ情報</h3>
+      <table class="info-table">
+        <tr>
+          <th>受付日時</th>
+          <td><%= @inquiry.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
+        </tr>
+        <tr>
+          <th>お名前</th>
+          <td><%= @inquiry.name %></td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <td><%= @inquiry.furigana %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @inquiry.email %></td>
+        </tr>
+        <tr>
+          <th>お問い合わせ区分</th>
+          <td><%= inquiry_type_label(@inquiry.inquiry_type) %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @inquiry.phone %></td>
+        </tr>
+        <tr>
+          <th>ご住所</th>
+          <td>
+            <% if @inquiry.address.present? %>
+              <%= simple_format(@inquiry.address) %>
+            <% else %>
+              <span class="text-muted">未入力</span>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="content-section">
+      <h3>お問い合わせ内容</h3>
+      <div class="content-box">
+        <%= simple_format(@inquiry.content) %>
+      </div>
+    </div>
+
+    <% if @inquiry.answers.any? %>
+      <div class="answers-section">
+        <h3>回答履歴</h3>
+        <% @inquiry.answers.order(:created_at).each do |answer| %>
+          <div class="answer-box">
+            <div class="answer-header">
+              <span class="answer-admin"><%= answer.admin_name %></span>
+              <span class="answer-date"><%= answer.created_at.strftime('%Y年%m月%d日 %H:%M') %></span>
+            </div>
+            <div class="answer-content">
+              <%= simple_format(answer.content) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
