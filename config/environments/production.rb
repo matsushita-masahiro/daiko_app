@@ -57,7 +57,12 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: ENV.fetch('APP_HOST', 'localhost:3000') }
+  config.action_mailer.default_url_options = {
+    host: ENV.fetch("APP_HOST", "daiko-app-0afad601a6fe.herokuapp.com"),
+    protocol: "https"
+  }
+
+  
 
   # メール送信設定（本番環境）
   config.action_mailer.delivery_method = :smtp
