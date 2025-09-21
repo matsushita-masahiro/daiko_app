@@ -34,7 +34,6 @@
       
       <div class="answer-box">
         <h3>💬 回答</h3>
-        <p><strong>回答者:</strong> <%= @answer.admin_name %></p>
         <p><strong>回答日時:</strong> <%= @answer.answered_at.strftime("%Y年%m月%d日 %H:%M") %></p>
         <hr>
         <p><%= simple_format(@answer.content) %></p>

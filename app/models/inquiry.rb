@@ -9,9 +9,9 @@ class Inquiry < ApplicationRecord
   validates :content, presence: true
   
   enum :inquiry_type, {
-    dependency: 0,
-    company_info: 1,
-    other: 2
+    dependency: "dependency",
+    company_info: "company_info", 
+    other: "other"
   }
   
   # 日本語表示用のメソッド
@@ -23,6 +23,8 @@ class Inquiry < ApplicationRecord
       '弊社について'
     when 'other'
       'その他ご質問'
+    else
+      inquiry_type
     end
   end
   

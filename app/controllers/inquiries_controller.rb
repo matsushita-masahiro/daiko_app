@@ -13,12 +13,20 @@ class InquiriesController < ApplicationController
   end
 
   def confirm
+    Rails.logger.debug "=== INQUIRY PARAMS DEBUG ==="
+    Rails.logger.debug "inquiry_params: #{inquiry_params.inspect}"
+    Rails.logger.debug "inquiry_type value: #{inquiry_params[:inquiry_type].inspect}"
+    
     @inquiry = Inquiry.new(inquiry_params)
+    
+    Rails.logger.debug "inquiry object inquiry_type: #{@inquiry.inquiry_type.inspect}"
+    Rails.logger.debug "inquiry object attributes: #{@inquiry.attributes.inspect}"
     
     if @inquiry.valid?
       session[:inquiry_params] = inquiry_params.to_h
       render :confirm
     else
+      Rails.logger.debug "inquiry validation errors: #{@inquiry.errors.full_messages}"
       render :new, status: :unprocessable_entity
     end
   end
@@ -34,9 +42,17 @@ class InquiriesController < ApplicationController
       return
     end
 
+    Rails.logger.debug "=== CREATE INQUIRY DEBUG ==="
+    Rails.logger.debug "session inquiry_params: #{session[:inquiry_params].inspect}"
+    
     @inquiry = Inquiry.new(session[:inquiry_params])
     
+    Rails.logger.debug "inquiry object before save: #{@inquiry.attributes.inspect}"
+    Rails.logger.debug "inquiry_type before save: #{@inquiry.inquiry_type.inspect}"
+    
     if @inquiry.save
+      Rails.logger.debug "inquiry saved successfully: #{@inquiry.attributes.inspect}"
+      
       # セッションクリア
       session.delete(:inquiry_params)
       
@@ -48,6 +64,7 @@ class InquiriesController < ApplicationController
       
       redirect_to root_path, notice: 'お問い合わせを受け付けました。'
     else
+      Rails.logger.debug "inquiry save failed: #{@inquiry.errors.full_messages}"
       render :confirm, status: :unprocessable_entity
     end
   end
