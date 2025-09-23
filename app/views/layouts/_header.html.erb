@@ -38,6 +38,9 @@
             <a href="#faq" class="nav-link">よくあるご質問</a>
           </li>
           <li class="nav-item">
+            <a href="#recruitment" class="nav-link">求人情報</a>
+          </li>
+          <li class="nav-item">
             <a href="#contact" class="nav-link">ご依頼・お問い合わせ</a>
           </li>
           <li class="nav-item">
@@ -45,7 +48,7 @@
           </li>
         </ul>
       <% else %>
-        <ul class="nav-menu">
+        <ul class="nav-menu" id="navMenu">
           <li class="nav-item">
             <%= link_to "ホーム", root_path, class: "nav-link" %>
           </li>
@@ -57,6 +60,9 @@
           </li>
           <li class="nav-item">
             <a href="<%= root_path %>#faq" class="nav-link">よくあるご質問</a>
+          </li>
+          <li class="nav-item">
+            <a href="<%= root_path %>#recruitment" class="nav-link">求人情報</a>
           </li>
           <li class="nav-item">
             <a href="<%= root_path %>#contact" class="nav-link">ご依頼・お問い合わせ</a>
