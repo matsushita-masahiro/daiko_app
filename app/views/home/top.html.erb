@@ -8,7 +8,7 @@
   <div class="hero-content">
     <h1>神戸市の安心・安全な運転代行</h1>
     <p>365日対応 | 迅速・丁寧・リーズナブル</p>
-    <a href="#contact" class="cta-button">今すぐお電話</a>
+    <a href="tel:<%= ENV['COMPANY_PHONE'].gsub(/[^0-9]/, '') %>" class="cta-button">今すぐお電話</a>
   </div>
 </section>
 
@@ -210,7 +210,7 @@
         <div class="job-apply">
           <p class="apply-text">ご応募はお電話、もしくは下記求人情報サイトよりお願いいたします！</p>
           <div class="apply-buttons">
-            <a href="tel:070-xxxx-xxxx" class="apply-btn phone-btn">
+            <a href="tel:<%= ENV['COMPANY_PHONE'].gsub(/[^0-9]/, '') %>" class="apply-btn phone-btn">
               📞 お電話で応募
             </a>
             <a href="#" class="apply-btn web-btn">
