@@ -251,7 +251,7 @@ body {
         position: relative;
 
         .nav-menu {
-          display: none;
+          display: flex;
           flex-direction: column;
           position: absolute;
           top: 100%;
@@ -271,12 +271,15 @@ body {
           max-height: 0;
           overflow: hidden;
           opacity: 0;
-          transition: all 0.4s ease;
+          visibility: hidden;
+          transform: translateY(-10px);
+          transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.5s ease, visibility 0.5s;
 
           &.active {
-            display: flex;
             max-height: 500px;
             opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
           }
 
           .nav-item {
