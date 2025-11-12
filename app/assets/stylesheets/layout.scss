@@ -110,11 +110,19 @@ body {
             color: #f39c12;
             display: block;
             margin-bottom: 0.2rem;
+
+            @media (max-width: 768px) {
+              font-size: 1.1rem;
+            }
           }
 
           .phone-hours {
             font-size: 1rem;
             opacity: 0.8;
+
+            @media (max-width: 768px) {
+              font-size: 0.85rem;
+            }
           }
         }
 
@@ -383,17 +391,24 @@ body {
   }
 
   @media (max-width: 768px) {
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 16px;
+    bottom: 100px;
+    right: 15px;
+    padding: 10px 12px;
+    border-radius: 30px;
+
+    .line-button-content {
+      flex-direction: column;
+      gap: 4px;
+    }
 
     svg {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
     }
 
     .line-text {
-      font-size: 0.9rem;
+      font-size: 0.75rem;
+      line-height: 1;
     }
   }
 }

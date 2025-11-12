@@ -508,6 +508,12 @@ body {
   }
 }
 
+@media (max-width: 580px) {
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+}
+
 
 
 // アンカー遷移
