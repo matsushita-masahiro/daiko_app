@@ -18,7 +18,7 @@
     <div class="service-grid">
       <div class="service-card">
         <div class="service-icon">🚗</div>
-        <h3>運転代行サービスだ</h3>
+        <h3>運転代行サービス</h3>
         <p>お客様のお車で安全にご自宅までお送りします。経験豊富なドライバーが責任を持って運転いたします。</p>
       </div>
       <div class="service-card">
@@ -216,6 +216,71 @@
             <a href="#" class="apply-btn web-btn">
               🌐 求人サイトで応募
             </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="company-info-section" id="company">
+  <div class="container">
+    <h2 class="section-title">会社情報</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3 class="info-subtitle">会社概要</h3>
+        <div class="info-content">
+          <div class="info-row">
+            <div class="info-label">事業名</div>
+            <div class="info-value"><%= ENV['COMPANY_NAME'] %></div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">代表者</div>
+            <div class="info-value"><%= ENV['COMPANY_REPRESENTATIVE'] %></div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">電話番号</div>
+            <div class="info-value"><a href="tel:<%= ENV['COMPANY_PHONE'].gsub(/[^0-9]/, '') %>" class="phone-link"><%= ENV['COMPANY_PHONE'] %></a></div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">所在地</div>
+            <div class="info-value">
+              〒<%= ENV['COMPANY_POSTCODE'] %><br>
+              <%= ENV['COMPANY_ADDRESS'] %>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">事業内容</div>
+            <div class="info-value">自動車運転代行業</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3 class="info-subtitle">自動車運転代行業の認定</h3>
+        <div class="info-content">
+          <div class="info-row">
+            <div class="info-label">認定者</div>
+            <div class="info-value">兵庫県 公安委員会</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">認定番号</div>
+            <div class="info-value"><%= ENV['COMPANY_CERTIFICATION_NUMBER'] %></div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">認定年月日</div>
+            <div class="info-value">令和7年10月24日</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">氏名又は名称</div>
+            <div class="info-value"><%= ENV['COMPANY_NAME'] %></div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">所在地</div>
+            <div class="info-value">
+              〒<%= ENV['COMPANY_POSTCODE'] %><br>
+              <%= ENV['COMPANY_ADDRESS'] %>
+            </div>
           </div>
         </div>
       </div>

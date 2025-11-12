@@ -41,10 +41,10 @@
             <a href="#recruitment" class="nav-link">求人情報</a>
           </li>
           <li class="nav-item">
-            <a href="#contact" class="nav-link">ご依頼・お問い合わせ</a>
+            <a href="#company" class="nav-link">会社情報</a>
           </li>
           <li class="nav-item">
-            <%= link_to "お問い合わせフォーム", new_inquiry_path, class: "nav-link" %>
+            <a href="#contact" class="nav-link">ご依頼・お問い合わせ</a>
           </li>
         </ul>
       <% else %>
@@ -65,10 +65,10 @@
             <a href="<%= root_path %>#recruitment" class="nav-link">求人情報</a>
           </li>
           <li class="nav-item">
-            <a href="<%= root_path %>#contact" class="nav-link">ご依頼・お問い合わせ</a>
+            <a href="<%= root_path %>#company" class="nav-link">会社情報</a>
           </li>
           <li class="nav-item">
-            <%= link_to "お問い合わせフォーム", new_inquiry_path, class: "nav-link #{'active' if controller_name == 'inquiries'}" %>
+            <a href="<%= root_path %>#contact" class="nav-link">ご依頼・お問い合わせ</a>
           </li>
         </ul>
       <% end %>

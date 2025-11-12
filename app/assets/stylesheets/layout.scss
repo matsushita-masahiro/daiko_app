@@ -59,8 +59,14 @@ body {
   background: #2c3e50;
   color: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: relative;
+  position: fixed;
+  width: 100%;
+  top: 0;
   z-index: 1000;
+
+  @media (max-width: 1064px) {
+    position: relative;
+  }
 
   .header-top {
     padding: 1rem 0;
@@ -93,7 +99,9 @@ body {
         width: 100%;
         order: 2;
         display: grid;
-        grid-template-columns: 4fr 2fr;
+        grid-template-columns: 4fr 1fr;
+        gap: 1rem;
+        align-items: center;
 
         .phone-info {
           .phone-number {
@@ -108,6 +116,11 @@ body {
             font-size: 1rem;
             opacity: 0.8;
           }
+        }
+
+        .toggle-area {
+          display: flex;
+          justify-content: flex-end;
         }
       }
 
@@ -139,7 +152,7 @@ body {
           transform: scale(0.95);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1064px) {
           display: flex;
         }
       }
@@ -160,8 +173,14 @@ body {
         margin: 0;
         padding: 1rem 0;
         gap: 2rem;
+        flex-wrap: nowrap;
+        justify-content: center;
 
-        @media (max-width: 768px) {
+        @media (max-width: 1200px) {
+          gap: 1.5rem;
+        }
+
+        @media (max-width: 1064px) {
           flex-direction: column;
           gap: 1rem;
 
@@ -174,6 +193,14 @@ body {
             padding: 0.5rem 1rem;
             border-radius: 4px;
             transition: all 0.3s ease;
+            white-space: nowrap;
+
+            @media (max-width: 1200px) {
+              padding: 0.5rem 0.8rem;
+              font-size: 0.95rem;
+            }
+
+
 
             &:hover {
               background: rgba(255, 255, 255, 0.1);
@@ -186,28 +213,8 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1064px) {
   .header {
-    .header-top {
-      padding: 1.5rem 0;
-
-      .header-top-content {
-        display: block;
-        .phone-section {
-          display: grid;
-          grid-template-columns: 4fr 2fr;
-
-          .toggle-area {
-            justify-self: end;
-          }
-        }
-
-        .mobile-menu-toggle {
-          display: flex !important;
-        }
-      }
-    }
-
     .navbar {
       padding: 0;
 
@@ -267,6 +274,30 @@ body {
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    .header-top {
+      padding: 1.5rem 0;
+
+      .header-top-content {
+        display: block;
+        .phone-section {
+          display: grid;
+          grid-template-columns: 4fr 2fr;
+
+          .toggle-area {
+            justify-self: end;
+          }
+        }
+
+        .mobile-menu-toggle {
+          display: flex !important;
         }
       }
     }
