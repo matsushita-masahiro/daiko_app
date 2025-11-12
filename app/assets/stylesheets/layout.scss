@@ -340,3 +340,60 @@ body {
   }
 
 }
+
+// 公式LINE固定ボタン
+.line-float-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #06C755;
+  padding: 12px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(6, 199, 85, 0.5);
+  z-index: 9999;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #05B04B;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(6, 199, 85, 0.6);
+  }
+
+  .line-button-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  svg {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+  }
+
+  .line-text {
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 16px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .line-text {
+      font-size: 0.9rem;
+    }
+  }
+}
