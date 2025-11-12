@@ -508,7 +508,12 @@ body {
 
   .hero {
     background-attachment: scroll;
-    margin-top: 95px;
+    margin-top: 0;
+    padding-top: 180px;
+  }
+
+  body:has(.alert) .hero {
+    padding-top: 240px;
   }
 
   .hero-content h1 {

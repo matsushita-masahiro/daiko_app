@@ -15,7 +15,7 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1><%= @company_name %></h1>
+      <h3><%= @company_name %></h3>
       <p>お問い合わせへの回答</p>
     </div>
     
@@ -27,14 +27,14 @@
       
       <div class="inquiry-box">
         <h3>📝 お問い合わせ内容</h3>
-        <p><strong>受付日時:</strong> <%= @inquiry.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
-        <p><strong>お問い合わせ区分:</strong> <%= @inquiry.inquiry_type_japanese %></p>
-        <p><%= simple_format(@inquiry.content) %></p>
+        <p><strong>受付日時:</strong><br><%= @inquiry.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+        <p><strong>区分:</strong><br><%= @inquiry.inquiry_type_japanese %></p>
+        <p><strong>お問い合わせ内容:</strong><%= simple_format(@inquiry.content) %></p>
       </div>
       
       <div class="answer-box">
         <h3>💬 回答</h3>
-        <p><strong>回答日時:</strong> <%= @answer.answered_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+        <p><strong>回答日時:</strong><br><%= @answer.answered_at.strftime("%Y年%m月%d日 %H:%M") %></p>
         <hr>
         <p><%= simple_format(@answer.content) %></p>
       </div>
