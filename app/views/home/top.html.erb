@@ -293,8 +293,9 @@
     <h2 class="section-title" style="color: white;">お問い合わせ</h2>
     <div class="contact-info">
       <div class="contact-item">
-        <h3>📞 お電話でのご予約</h3>
-        <p style="font-size: 1.5rem; font-weight: bold;"><%= ENV['COMPANY_PHONE'] %></p>
+        <a href="tel:<%= ENV['COMPANY_PHONE'].gsub(/[^0-9]/, '') %>" class="contact-phone-button">
+          お電話でのご予約
+        </a>
         <p>24時間受付対応</p>
       </div>
       <div class="contact-item">

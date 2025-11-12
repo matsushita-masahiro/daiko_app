@@ -12,7 +12,9 @@
       </div>
       <div class="phone-section">
         <div class="phone-info">
-          <span class="phone-number">📞 <%= ENV['COMPANY_PHONE'] %></span>
+          <a href="tel:<%= ENV['COMPANY_PHONE'].gsub(/[^0-9]/, '') %>" class="phone-button">
+            📞 お電話でのご予約
+          </a>
           <div class="phone-hours"><%= ENV['BUSINESS_HOURS_START'] %>〜翌<%= ENV['BUSINESS_HOURS_END'] %> 年中無休</div>
         </div>
         <div class="toggle-area">
