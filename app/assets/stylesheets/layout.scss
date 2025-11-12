@@ -111,6 +111,32 @@ body {
 
         .mobile-menu-toggle {
           display: none;
+          background: rgba(255, 255, 255, 0.9);
+          border: 2px solid #333;
+          border-radius: 5px;
+          font-size: 1.5rem;
+          color: #333;
+          cursor: pointer;
+          padding: 0.5rem;
+          width: 40px;
+          height: 40px;
+          align-items: center;
+          justify-content: center;
+          z-index: 10001;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+          &:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+          }
+
+          &:active {
+            transform: scale(0.95);
+          }
+
+          @media (max-width: 1064px) {
+            display: flex;
+          }
         }
       }
 
@@ -161,39 +187,6 @@ body {
         .toggle-area {
           display: flex;
           justify-content: flex-end;
-        }
-      }
-
-      .mobile-menu-toggle {
-        display: none;
-        background: rgba(255, 255, 255, 0.9);
-        border: 2px solid #333;
-        border-radius: 5px;
-        font-size: 1.5rem;
-        color: #333;
-        cursor: pointer;
-        padding: 0.5rem;
-        width: 40px;
-        height: 40px;
-        align-items: center;
-        justify-content: center;
-        z-index: 10001;
-        // position: absolute;
-        right: 20px;
-        top: 20px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-        &:hover {
-          background: rgba(255, 255, 255, 1);
-          transform: scale(1.05);
-        }
-
-        &:active {
-          transform: scale(0.95);
-        }
-
-        @media (max-width: 1064px) {
-          display: flex;
         }
       }
     }
@@ -323,7 +316,7 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1064px) {
   .header {
     .header-top {
       padding: 1rem 0;

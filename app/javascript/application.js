@@ -4,5 +4,4 @@ import "controllers"
 import "home"
 import "user_location"
 
-console.log("JavaScript is working!");
 

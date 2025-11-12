@@ -3,17 +3,13 @@ function initializeHomeJS() {
   const mobileMenuToggle = document.getElementById('mobileMenuToggle');
   const navMenu = document.getElementById('navMenu') || document.querySelector('.nav-menu');
 
-  console.log('mobileMenuToggle:', mobileMenuToggle);
-  console.log('navMenu:', navMenu);
 
   if (mobileMenuToggle) {
     // 既存のイベントリスナーを削除
     mobileMenuToggle.removeEventListener('click', handleMenuToggle);
 
-    console.log('Adding click listener to hamburger menu');
     mobileMenuToggle.addEventListener('click', handleMenuToggle);
   } else {
-    console.log('mobileMenuToggle not found');
   }
 
   // nav-linkクリック時にメニューを閉じる
@@ -22,7 +18,6 @@ function initializeHomeJS() {
       const navMenu = document.getElementById('navMenu') || document.querySelector('.nav-menu');
       if (navMenu && navMenu.classList.contains('active')) {
         navMenu.classList.remove('active');
-        console.log('Menu closed by nav-link click');
       }
     });
   });
@@ -35,9 +30,14 @@ function initializeHomeJS() {
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+          // ヘッダーの高さを考慮してスクロール位置を調整
+          const headerOffset = 200;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
           });
         }
       }
@@ -50,16 +50,12 @@ function handleMenuToggle(e) {
   const navMenu = document.getElementById('navMenu') || document.querySelector('.nav-menu');
 
   if (!navMenu) {
-    console.log('navMenu not found for toggle');
     return;
   }
 
-  console.log('Toggle clicked, current classes:', navMenu.className);
 
   navMenu.classList.toggle('active');
   
-  console.log('After toggle, classes:', navMenu.className);
-  console.log('Has active class?', navMenu.classList.contains('active'));
 }
 
 
@@ -68,25 +64,37 @@ function handleMenuToggle(e) {
 // アクティブなナビゲーションリンクのハイライト（トップページのみ）
 function initializeScrollHighlight() {
   if (window.location.pathname === '/' || window.location.pathname === '') {
-    window.addEventListener('scroll', function() {
+    // スクロールイベントのハンドラー
+    const handleScroll = () => {
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
       
       let current = '';
+      const scrollPosition = window.scrollY;
+      
       sections.forEach(section => {
-        const sectionTop = section.offsetTop - 200;
-        if (pageYOffset >= sectionTop) {
+        const sectionTop = section.offsetTop - 250;
+        const sectionHeight = section.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
           current = section.getAttribute('id');
         }
       });
 
       navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
+        const href = link.getAttribute('href');
+        if (href === '#' + current) {
           link.classList.add('active');
         }
       });
-    });
+    };
+
+    // 初回実行
+    handleScroll();
+    
+    // スクロールイベントリスナー追加
+    window.addEventListener('scroll', handleScroll, { passive: true });
   }
 }
 
