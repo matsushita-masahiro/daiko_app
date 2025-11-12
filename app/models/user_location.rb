@@ -11,12 +11,12 @@ class UserLocation < ApplicationRecord
   scope :this_month, -> { where(visited_at: 1.month.ago.beginning_of_day..Date.current.end_of_day) }
   scope :recent, ->(limit = 10) { order(visited_at: :desc).limit(limit) }
 
-  # サービスエリアの定義（神戸市全域、芦屋市、西宮市、尼崎市）
-  # 北緯: 34.6°〜34.8°, 東経: 135.0°〜135.5°
-  SERVICE_AREA_LAT_MIN = 34.6
-  SERVICE_AREA_LAT_MAX = 34.8
-  SERVICE_AREA_LON_MIN = 135.0
-  SERVICE_AREA_LON_MAX = 135.5
+  # サービスエリアの定義（神戸市のみ）
+  # 神戸市の概算範囲: 北緯: 34.63°〜34.75°, 東経: 135.05°〜135.35°
+  SERVICE_AREA_LAT_MIN = 34.63
+  SERVICE_AREA_LAT_MAX = 34.75
+  SERVICE_AREA_LON_MIN = 135.05
+  SERVICE_AREA_LON_MAX = 135.35
 
   scope :within_service_area, -> {
     where(
@@ -62,9 +62,9 @@ class UserLocation < ApplicationRecord
   def approximate_address
     # 簡易的な住所表示（実際の逆ジオコーディングは外部APIが必要）
     if within_service_area?
-      "神戸市周辺（サービスエリア内）"
+      "神戸市内"
     else
-      "サービスエリア外"
+      "神戸市外"
     end
   end
 end

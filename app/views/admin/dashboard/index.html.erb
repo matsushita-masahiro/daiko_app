@@ -62,15 +62,15 @@
         </div>
         <div class="stat-item">
           <div class="stat-number service-area"><%= @locations_within_service_area %></div>
-          <div class="stat-label">サービスエリア内</div>
+          <div class="stat-label">神戸市内</div>
         </div>
         <div class="stat-item">
           <div class="stat-number outside-area"><%= @locations_outside_service_area %></div>
-          <div class="stat-label">サービスエリア外</div>
+          <div class="stat-label">神戸市外</div>
         </div>
         <div class="stat-item">
           <div class="stat-number percentage"><%= @service_area_percentage %>%</div>
-          <div class="stat-label">エリア内割合</div>
+          <div class="stat-label">市内割合</div>
         </div>
         <div class="stat-item">
           <div class="stat-number"><%= @today_locations %></div>
@@ -111,9 +111,9 @@
                 <td><%= location.longitude.round(4) %></td>
                 <td>
                   <% if location.within_service_area? %>
-                    <span class="badge badge-success">エリア内</span>
+                    <span class="badge badge-success">神戸市内</span>
                   <% else %>
-                    <span class="badge badge-secondary">エリア外</span>
+                    <span class="badge badge-secondary">神戸市外</span>
                   <% end %>
                 </td>
                 <td><%= location.ip_address %></td>
