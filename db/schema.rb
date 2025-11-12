@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_21_124940) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_12_091012) do
   create_table "answers", force: :cascade do |t|
     t.integer "inquiry_id", null: false
     t.text "content"
@@ -40,6 +40,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_21_124940) do
     t.datetime "visited_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_locations", force: :cascade do |t|
+    t.decimal "latitude", precision: 10, scale: 6, null: false
+    t.decimal "longitude", precision: 10, scale: 6, null: false
+    t.string "ip_address", null: false
+    t.text "user_agent"
+    t.string "referer"
+    t.datetime "visited_at", null: false
+    t.datetime "anonymized_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ip_address"], name: "index_user_locations_on_ip_address"
+    t.index ["latitude", "longitude"], name: "index_user_locations_on_latitude_and_longitude"
+    t.index ["visited_at"], name: "index_user_locations_on_visited_at"
   end
 
   add_foreign_key "answers", "inquiries"

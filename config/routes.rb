@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     resources :answers, only: [:new, :create, :show]
   end
   
+  # 位置情報記録用ルート
+  post "user_location", to: "user_locations#create"
+  
   # 管理者用ルート
   namespace :admin do
     root 'dashboard#index'

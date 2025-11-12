@@ -51,7 +51,79 @@
         </div>
       </div>
     </div>
+
+    <!-- 位置情報統計カード -->
+    <div class="stat-card-large">
+      <h3>📍 位置情報分析</h3>
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-number"><%= @total_locations %></div>
+          <div class="stat-label">総位置情報数</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number service-area"><%= @locations_within_service_area %></div>
+          <div class="stat-label">サービスエリア内</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number outside-area"><%= @locations_outside_service_area %></div>
+          <div class="stat-label">サービスエリア外</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number percentage"><%= @service_area_percentage %>%</div>
+          <div class="stat-label">エリア内割合</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number"><%= @today_locations %></div>
+          <div class="stat-label">今日</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number"><%= @this_week_locations %></div>
+          <div class="stat-label">今週</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number"><%= @this_month_locations %></div>
+          <div class="stat-label">今月</div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- 最近の位置情報 -->
+  <% if @recent_locations.any? %>
+    <div class="recent-locations-section">
+      <h3>📌 最近の位置情報</h3>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>日時</th>
+              <th>緯度</th>
+              <th>経度</th>
+              <th>エリア</th>
+              <th>IPアドレス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @recent_locations.each do |location| %>
+              <tr>
+                <td><%= location.visited_at.strftime('%Y/%m/%d %H:%M') %></td>
+                <td><%= location.latitude.round(4) %></td>
+                <td><%= location.longitude.round(4) %></td>
+                <td>
+                  <% if location.within_service_area? %>
+                    <span class="badge badge-success">エリア内</span>
+                  <% else %>
+                    <span class="badge badge-secondary">エリア外</span>
+                  <% end %>
+                </td>
+                <td><%= location.ip_address %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
 
   <div class="menu-section">
     <h3>メニュー</h3>

@@ -769,3 +769,99 @@
 .current-page {
   margin: 7px 50px 0 0;
 }
+// 位置情報分析
+スタイル
+.dashboard {
+  .stat-card-large {
+    .stat-item {
+      .stat-number {
+        &.service-area {
+          color: #28a745;
+        }
+
+        &.outside-area {
+          color: #6c757d;
+        }
+
+        &.percentage {
+          color: #007bff;
+        }
+      }
+    }
+  }
+
+  .recent-locations-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+
+    h3 {
+      margin: 0 0 1.5rem 0;
+      color: #343a40;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #e9ecef;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th, td {
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      th {
+        background: #f8f9fa;
+        font-weight: 600;
+        color: #495057;
+        font-size: 0.9rem;
+      }
+
+      tr:hover {
+        background: #f8f9fa;
+      }
+
+      .badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+
+        &.badge-success {
+          background: #d4edda;
+          color: #155724;
+        }
+
+        &.badge-secondary {
+          background: #e9ecef;
+          color: #6c757d;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    .recent-locations-section {
+      padding: 1.5rem;
+
+      .data-table {
+        min-width: 600px;
+
+        th, td {
+          padding: 0.5rem;
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+}
