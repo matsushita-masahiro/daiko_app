@@ -1,7 +1,7 @@
 // Entry point for your Sass build
 
-@import "layout";
-@import "home";
-@import "inquiry";
-@import "admin";
-@import "terms";
+@use "layout";
+@use "home";
+@use "inquiry";
+@use "admin";
+@use "terms";
