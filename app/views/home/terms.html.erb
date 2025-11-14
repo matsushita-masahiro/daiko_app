@@ -1,5 +1,16 @@
 <% content_for :title, "利用規約 | #{ENV['COMPANY_NAME']}" %>
 <% content_for :description, "神戸運転代行ヒロクルの利用規約です。サービスをご利用いただく前に必ずお読みください。" %>
+<% content_for :keywords, "利用規約,運転代行,神戸,ヒロクル,約款" %>
+
+<% content_for :head do %>
+  <!-- パンくずリスト構造化データ -->
+  <script type="application/ld+json">
+  <%= breadcrumb_structured_data_json([
+    { name: "ホーム", url: root_url },
+    { name: "利用規約", url: terms_url }
+  ]) %>
+  </script>
+<% end %>
 
 <div class="terms-page">
   <div class="container">

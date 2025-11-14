@@ -1,28 +1,17 @@
 class SitemapsController < ApplicationController
   def index
-    @urls = [
-      {
-        loc: root_url,
-        lastmod: Date.current,
-        changefreq: 'daily',
-        priority: 1.0
-      },
-      {
-        loc: new_inquiry_url,
-        lastmod: Date.current,
-        changefreq: 'monthly',
-        priority: 0.8
-      }
-    ]
+    @base_url = "https://神戸運転代行.com"
     
     respond_to do |format|
-      format.xml { render layout: false }
+      format.xml
     end
   end
 
   def robots
     respond_to do |format|
-      format.text { render layout: false }
+      format.text do
+        render plain: File.read(Rails.root.join('public', 'robots.txt'))
+      end
     end
   end
 end

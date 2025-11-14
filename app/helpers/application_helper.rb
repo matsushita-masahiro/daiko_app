@@ -86,4 +86,54 @@ module ApplicationHelper
       }
     }.to_json.html_safe
   end
+
+  # FAQ構造化データ
+  def faq_structured_data_json
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "料金はどのように計算されますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "距離に応じた基本料金制となっております。事前にお見積もりをお伝えし、追加料金は一切いただきません。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "予約は必要ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "予約なしでもご利用いただけますが、お待たせする場合がございます。事前のご予約をおすすめします。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "支払い方法は？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "現金、クレジットカード、電子マネーでのお支払いが可能です。"
+          }
+        }
+      ]
+    }.to_json.html_safe
+  end
+
+  # パンくずリスト構造化データ
+  def breadcrumb_structured_data_json(items)
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": items.map.with_index do |item, index|
+        {
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item[:name],
+          "item": item[:url]
+        }
+      end
+    }.to_json.html_safe
+  end
 end

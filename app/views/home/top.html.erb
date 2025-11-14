@@ -4,6 +4,13 @@
 <% content_for :og_title, "神戸・三宮の安い・安全な運転代行サービス | ヒロクル" %>
 <% content_for :og_description, "神戸市・三宮エリアで24時間対応の運転代行サービス。安い料金で安全にお送りします。" %>
 
+<% content_for :head do %>
+  <!-- FAQ構造化データ -->
+  <script type="application/ld+json">
+  <%= faq_structured_data_json %>
+  </script>
+<% end %>
+
 <section class="hero" id="home">
   <div class="hero-content">
     <h1>神戸市の安心・安全な運転代行</h1>
