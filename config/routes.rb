@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get "sitemap.xml" => "sitemaps#index", defaults: { format: :xml }
   get "robots.txt" => "sitemaps#robots", defaults: { format: :text }
   
+  # 利用規約
+  get "terms", to: "home#terms"
+  
   resources :inquiries, only: [:index, :show, :new, :create] do
     collection do
       post :confirm

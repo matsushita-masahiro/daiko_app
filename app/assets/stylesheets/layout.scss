@@ -107,6 +107,7 @@ body {
           font-weight: bold;
           color: white;
           margin-bottom: 0.5rem;
+          white-space: nowrap;
         }
 
         .mobile-menu-toggle {
@@ -332,9 +333,10 @@ body {
 
           .logo {
             margin-bottom: 0;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             text-align: center;
             grid-column: 2;
+            white-space: nowrap;
           }
 
           .mobile-menu-toggle {
@@ -382,6 +384,28 @@ body {
     margin: 0 auto;
     padding: 0 20px;
     text-align: center;
+  }
+
+  .footer-links {
+    margin-bottom: 1rem;
+
+    .footer-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: white;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
   }
 }
 

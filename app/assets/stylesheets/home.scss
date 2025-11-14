@@ -246,7 +246,8 @@ body {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  margin: 2rem 0;
+  margin: 2rem auto;
+  max-width: 800px;
 }
 
 .price-header {
@@ -1064,4 +1065,134 @@ nfo-section {
   font-size: 1.3rem;
   text-align: center;
   font-weight: bold;
+}
+
+// LINE友達追加割引バナー
+.line-discount-banner {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: linear-gradient(135deg, #06C755 0%, #05B04B 100%);
+  border-radius: 15px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 10px 30px rgba(6, 199, 85, 0.3);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(6, 199, 85, 0.3);
+  }
+  50% {
+    box-shadow: 0 15px 40px rgba(6, 199, 85, 0.5);
+  }
+}
+
+.line-discount-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.line-discount-icon {
+  background: white;
+  border-radius: 50%;
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  svg {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.line-discount-text {
+  flex: 1;
+  min-width: 200px;
+  color: white;
+  text-align: center;
+
+  h3 {
+    margin: 0 0 0.3rem 0;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .line-discount-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0.2rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  p {
+    margin: 0.3rem 0 0 0;
+    font-size: 0.9rem;
+    opacity: 0.95;
+  }
+}
+
+.line-discount-button {
+  background: white;
+  color: #06C755;
+  padding: 0.7rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (max-width: 768px) {
+  .line-discount-banner {
+    padding: 1.2rem 1rem;
+    margin: 1.5rem 1rem;
+  }
+
+  .line-discount-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .line-discount-icon {
+    padding: 0.5rem;
+
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .line-discount-text {
+    h3 {
+      font-size: 0.9rem;
+    }
+
+    .line-discount-price {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
+  }
+
+  .line-discount-button {
+    width: 100%;
+    max-width: 250px;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+  }
 }
