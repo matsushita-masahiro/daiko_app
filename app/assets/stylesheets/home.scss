@@ -35,9 +35,12 @@ body {
 }
 
 .logo {
+  font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
   font-size: 1.8rem;
-  font-weight: bold;
+  font-weight: 900;
   color: white;
+  letter-spacing: 0.05em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .phone-info {
