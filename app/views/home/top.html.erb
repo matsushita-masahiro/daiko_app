@@ -344,7 +344,7 @@
         <a href="tel:<%= ENV['COMPANY_PHONE'].gsub(/[^0-9]/, '') %>" class="contact-phone-button">
           お電話でのご予約
         </a>
-        <p>24時間受付対応</p>
+        <p><%= ENV['BUSINESS_HOURS_START'] %>〜翌<%= ENV['BUSINESS_HOURS_END'] %> 受付対応</p>
       </div>
       <div class="contact-item">
         <h3>📍 対応エリア</h3>
