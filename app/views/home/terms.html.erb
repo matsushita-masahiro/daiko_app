@@ -130,7 +130,7 @@
 
       <section class="terms-section">
         <h2>第12条（お問い合わせ）</h2>
-        <p>本サービスに関するお問い合わせは以下までお願いします。</p>
+        <p>本サービスに関するお問い合わせは<%= link_to "こちら", new_inquiry_path, style: "color: #1e3c72; font-weight: bold; text-decoration: underline;" %>までお願いします。</p>
         <div class="contact-info">
           <p><strong><%= ENV['COMPANY_NAME'] %></strong></p>
           <p>電話番号：<a href="tel:<%= ENV['COMPANY_PHONE'].gsub(/[^0-9]/, '') %>"><%= ENV['COMPANY_PHONE'] %></a></p>
