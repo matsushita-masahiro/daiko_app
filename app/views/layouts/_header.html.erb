@@ -3,10 +3,14 @@
     <div class="header-top-content">
       <div class="logo-section">
         <% if controller_name == 'home' && action_name == 'top' %>
-          <div class="logo"><%= ENV['COMPANY_NAME'] %></div>
+          <div class="logo">
+            <span class="logo-text"><%= ENV['COMPANY_NAME'] %></span>
+          </div>
         <% else %>
           <%= link_to root_path, class: "logo-link" do %>
-            <div class="logo"><%= ENV['COMPANY_NAME'] %></div>
+            <div class="logo">
+              <span class="logo-text"><%= ENV['COMPANY_NAME'] %></span>
+            </div>
           <% end %>
         <% end %>
         <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
