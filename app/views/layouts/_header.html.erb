@@ -4,11 +4,13 @@
       <div class="logo-section">
         <% if controller_name == 'home' && action_name == 'top' %>
           <div class="logo">
+            <%= image_tag "hirokuru.png", alt: "ヒロクル", class: "logo-image" %>
             <span class="logo-text"><%= ENV['COMPANY_NAME'] %></span>
           </div>
         <% else %>
           <%= link_to root_path, class: "logo-link" do %>
             <div class="logo">
+              <%= image_tag "hirokuru.png", alt: "ヒロクル", class: "logo-image" %>
               <span class="logo-text"><%= ENV['COMPANY_NAME'] %></span>
             </div>
           <% end %>
