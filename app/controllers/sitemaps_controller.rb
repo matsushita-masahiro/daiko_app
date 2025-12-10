@@ -1,6 +1,6 @@
 class SitemapsController < ApplicationController
   def index
-    @base_url = "https://神戸運転代行.com"
+    @base_url = "https://www.hirokuru.com"
     
     respond_to do |format|
       format.xml

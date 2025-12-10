@@ -40,8 +40,8 @@ module ApplicationHelper
   def og_image(image = nil)
     return image if image.present?
     
-    # 既存のアイコンファイルを使用
-    "#{request.base_url}/icon.png"
+    # 新しいファビコンファイルを使用
+    "#{request.base_url}/android-chrome-512x512.png"
   end
 
   # 構造化データ（JSON-LD）の生成

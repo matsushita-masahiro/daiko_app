@@ -4,4 +4,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /inquiries/
 
-Sitemap: https://神戸運転代行.com/sitemap.xml
+Sitemap: https://www.hirokuru.com/sitemap.xml
